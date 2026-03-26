@@ -56,7 +56,7 @@ export default function Navbar() {
         <div className="flex items-center gap-1">
           <button
             onClick={toggleLanguage}
-            className="flex items-center gap-1 px-3 py-2 rounded-lg text-gray-500 dark:text-gray-500 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100/50 dark:hover:bg-white/[0.04] transition-all duration-300"
+            className="flex items-center gap-1 px-3 py-2 rounded-lg text-gray-500 dark:text-gray-500 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100/50 dark:hover:bg-white/[0.04] transition-all duration-300 cursor-pointer"
             aria-label="Toggle language"
           >
             <Globe size={16} />
@@ -64,7 +64,7 @@ export default function Navbar() {
           </button>
           <button
             onClick={toggleTheme}
-            className="p-2 rounded-lg text-gray-500 dark:text-gray-500 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100/50 dark:hover:bg-white/[0.04] transition-all duration-300"
+            className="p-2 rounded-lg text-gray-500 dark:text-gray-500 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100/50 dark:hover:bg-white/[0.04] transition-all duration-300 cursor-pointer"
             aria-label="Toggle theme"
           >
             <AnimatePresence mode="wait">
