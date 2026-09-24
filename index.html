@@ -23,11 +23,13 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400..800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
     <script>
-      // Apply the stored or preferred theme before first paint to avoid a light flash.
+      // Apply a chosen dark theme before first paint to avoid a light flash. Light is the default.
+      // Keep the key in sync with THEME_KEY in src/context/AppContext.tsx.
       try {
-        const stored = localStorage.getItem('theme');
-        const dark = stored ? stored === 'dark' : matchMedia('(prefers-color-scheme: dark)').matches;
-        document.documentElement.classList.toggle('dark', dark);
+        // Drop the old keys, which were saved on every visit rather than on an explicit choice.
+        localStorage.removeItem('theme');
+        localStorage.removeItem('language');
+        document.documentElement.classList.toggle('dark', localStorage.getItem('themeChoice') === 'dark');
       } catch {}
     </script>
   </head>
