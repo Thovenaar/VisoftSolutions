@@ -221,9 +221,9 @@ const translations: Record<Language, Translations> = {
         },
       ],
       education: [
+        { period: '2025 — 2027', degree: 'Social Work (in progress)', institution: 'Capabel Onderwijs' },
         { period: '2019 — 2021', degree: 'MSc Digital Business', institution: 'University of Amsterdam' },
         { period: '2015 — 2019', degree: 'BSc Software Engineering', institution: 'The Hague University of Applied Sciences' },
-        { period: '2025 — 2027', degree: 'Social Work (in progress)', institution: 'Capabel Onderwijs' },
         { period: 'certificate · microsoft', degree: 'AZ-204', institution: 'Developing Solutions for Microsoft Azure' },
       ],
     },
@@ -427,9 +427,9 @@ const translations: Record<Language, Translations> = {
         },
       ],
       education: [
+        { period: '2025 — 2027', degree: 'Social Work (in opleiding)', institution: 'Capabel Onderwijs' },
         { period: '2019 — 2021', degree: 'MSc Digital Business', institution: 'Universiteit van Amsterdam' },
         { period: '2015 — 2019', degree: 'HBO-ICT Software Engineering', institution: 'De Haagse Hogeschool' },
-        { period: '2025 — 2027', degree: 'Social Work (in opleiding)', institution: 'Capabel Onderwijs' },
         { period: 'certificaat · microsoft', degree: 'AZ-204', institution: 'Developing Solutions for Microsoft Azure' },
       ],
     },
