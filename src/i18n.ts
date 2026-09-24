@@ -1,345 +1,506 @@
 export type Language = 'en' | 'nl';
 
+export type ProjectCategory = 'own' | 'client' | 'wordpress';
+export type VentureLogo = 'visoft' | 'metriks' | 'xuivi' | 'shop';
+
+interface Stat {
+  value: string;
+  label: string;
+}
+
 interface Translations {
   nav: {
-    about: string;
-    projects: string;
+    work: string;
     experience: string;
+    ventures: string;
+    about: string;
     contact: string;
-  };
-  hero: {
-    greeting: string;
-    name: string;
-    tagline: string;
     cta: string;
   };
-  about: {
-    title: string;
-    p1: string;
-    p2: string;
-    ai: string;
-    skillsLabel: string;
+  hero: {
+    role: string;
+    intro: string;
+    cta: string;
+    secondary: string;
+    currentlyLabel: string;
+    currentlyTitle: string;
+    currentlyText: string;
+    facts: { label: string; value: string; status?: 'on' | 'off' }[];
   };
+  stats: Stat[];
   projects: {
+    label: string;
     title: string;
-    categories: {
+    filters: Record<'all' | ProjectCategory, string>;
+    categories: Record<ProjectCategory, string>;
+    visit: string;
+    showAll: string;
+    showFewer: string;
+    items: {
       name: string;
-      items: {
-        name: string;
-        description: string;
-        url?: string;
-        tech: string[];
-      }[];
+      category: ProjectCategory;
+      description: string;
+      url?: string;
+      tech: string[];
     }[];
+    cta: { title: string; text: string; action: string };
   };
   experience: {
+    label: string;
     title: string;
+    subtitle: string;
     items: {
       period: string;
       company: string;
       role: string;
       description: string;
     }[];
-    educationTitle: string;
     education: {
       period: string;
-      institution: string;
       degree: string;
-    }[];
-    certificatesTitle: string;
-    certificates: {
-      name: string;
-      issuer: string;
+      institution: string;
     }[];
   };
+  ventures: {
+    label: string;
+    title: string;
+    intro: string;
+    items: {
+      name: string;
+      logo: VentureLogo;
+      period: string;
+      role: string;
+      description: string;
+      url?: string;
+      stats: Stat[];
+    }[];
+  };
+  about: {
+    label: string;
+    title: string;
+    p1: string;
+    p2: string;
+  };
   contact: {
+    label: string;
     title: string;
     subtitle: string;
     email: string;
+    linkedin: string;
   };
 }
 
 const translations: Record<Language, Translations> = {
   en: {
     nav: {
-      about: 'About',
-      projects: 'Projects',
-      experience: 'Experience',
-      contact: 'Contact',
-    },
-    hero: {
-      greeting: 'Hi, I\'m',
-      name: 'Thomas Vieveen',
-      tagline: 'Software Engineer & Digital Consultant',
+      work: '~/work',
+      experience: '~/experience',
+      ventures: '~/ventures',
+      about: '~/about',
+      contact: '~/contact',
       cta: 'Get in touch',
     },
-    about: {
-      title: 'About me',
-      p1: 'I\'m a software engineer with a strong background in both technology and business. With over 10 years of experience in .NET development and a Master\'s in Digital Business from the University of Amsterdam, I bridge the gap between technical solutions and business strategy.',
-      p2: 'I specialize in building web applications, cloud-native solutions, and e-commerce platforms. Whether it\'s architecting a new system, optimizing existing processes, or leading a development team — I bring both technical depth and a business-minded perspective.',
-      ai: 'I actively leverage AI in my daily workflow and know how to integrate it into real-world applications — from using LLMs (OpenAI, Anthropic, Gemini, Grok) and AI-assisted development tools to building intelligent features powered by Azure AI Services. I help businesses adopt AI pragmatically, turning hype into measurable value.',
-      skillsLabel: 'Technologies I work with',
-    },
-    projects: {
-      title: 'Projects',
-      categories: [
-        {
-          name: 'Own Projects',
-          items: [
-            {
-              name: 'Metriks',
-              description: 'A paid Shopify SaaS plugin for automatic profit calculation, ad spend analysis, and product performance analytics. Connects with Google, Facebook, TikTok, and Pinterest.',
-              url: 'https://metriks.nl',
-              tech: ['Shopify', '.NET', 'Azure', 'React'],
-            },
-            {
-              name: 'CompetitorScraping',
-              description: 'A platform that connects businesses in need of competitor data with a curated network of scraping services, offering a full range of web scraping solutions.',
-              url: 'https://competitorscraping.com',
-              tech: ['.NET', 'Azure', 'Web Scraping'],
-            },
-          ],
-        },
-        {
-          name: 'Client Projects',
-          items: [
-            {
-              name: 'HartNetwerk',
-              description: 'An invoicing tool for a healthcare organization with 100+ employees across 10+ companies. Automated complex hourly rate calculations (7 different rates based on day/time) into a one-click export.',
-              tech: ['.NET', 'Azure', 'Blazor'],
-            },
-          ],
-        },
-        {
-          name: 'WordPress',
-          items: [
-            {
-              name: 'Elazorg',
-              description: 'Website for a care organization providing small-scale living and daytime activities for people with disabilities.',
-              url: 'https://elazorg.nl',
-              tech: ['WordPress', 'Custom Theme'],
-            },
-            {
-              name: 'Close2U',
-              description: 'Website for a vocal trio, showcasing their repertoire, music samples, and booking information for events and performances.',
-              url: 'https://close2u.eu',
-              tech: ['WordPress', 'Custom Theme'],
-            },
-          ],
-        },
+    hero: {
+      role: 'Software engineer & digital consultant',
+      intro:
+        'I design and build cloud platforms on .NET and Azure, from pipelines moving millions of messages to profitable SaaS, with a business degree to back the decisions.',
+      cta: 'Get in touch',
+      secondary: 'View projects',
+      currentlyLabel: 'Currently',
+      currentlyTitle: 'Building HPDX at ECT Rotterdam',
+      currentlyText:
+        'A cloud messaging platform processing millions of messages for sea terminals and shipping agencies worldwide.',
+      facts: [
+        { label: 'projects', value: 'Available', status: 'on' },
+        { label: 'freelance hire', value: 'Not available', status: 'off' },
+        { label: 'core stack', value: '.NET · Azure · React' },
+        { label: 'based in', value: 'The Netherlands' },
       ],
     },
-    experience: {
-      title: 'Experience',
+    stats: [
+      { value: '18M+', label: 'pages scraped' },
+      { value: '€10M+', label: 'revenue tracked' },
+      { value: '406', label: 'webshops on Metriks' },
+      { value: '10+', label: 'years .NET & Azure' },
+    ],
+    projects: {
+      label: '01 / work',
+      title: 'Things I’ve built',
+      filters: { all: 'all', own: 'own products', client: 'client', wordpress: 'wordpress' },
+      categories: { own: 'own product', client: 'client', wordpress: 'wordpress' },
+      visit: 'Visit',
+      showAll: '+ {n} more · show all projects',
+      showFewer: 'show fewer',
       items: [
         {
-          period: '2024 — Present',
+          name: 'Metriks',
+          category: 'own',
+          description:
+            'Paid Shopify SaaS for automatic profit calculation, ad-spend analysis and product performance. Connects with Google, Facebook, TikTok and Pinterest.',
+          url: 'https://metriks.nl',
+          tech: ['Shopify', '.NET', 'Azure', 'React'],
+        },
+        {
+          name: 'Xuivi',
+          category: 'own',
+          description:
+            'Turns any website into clean JSON: product pages, listings, paginated search and pages behind a login. JavaScript, proxies, bot walls and retries are handled. Pay per successful page.',
+          url: 'https://xuivi.com',
+          tech: ['.NET', 'Azure', 'Web scraping', 'API'],
+        },
+        {
+          name: 'HartNetwerk',
+          category: 'client',
+          description:
+            'Invoicing tool for a healthcare organization with 100+ employees across 10+ companies. Seven day- and time-based hourly rates reduced to a one-click export.',
+          tech: ['.NET', 'Azure', 'Blazor'],
+        },
+        {
+          name: 'Vieveen A.B.C.',
+          category: 'client',
+          description:
+            'Website for an accounting and tax-advice firm in Nootdorp that has helped individuals and entrepreneurs for over 30 years.',
+          url: 'https://abcvieveen.nl',
+          tech: ['Next.js', 'React'],
+        },
+        {
+          name: 'Elazorg',
+          category: 'wordpress',
+          description:
+            'Website for a care organization providing small-scale living and daytime activities for people with disabilities.',
+          url: 'https://elazorg.nl',
+          tech: ['WordPress', 'Custom theme'],
+        },
+        {
+          name: 'Close2U',
+          category: 'wordpress',
+          description:
+            'Website for a vocal trio, with their repertoire, music samples and booking information for events.',
+          url: 'https://close2u.eu',
+          tech: ['WordPress', 'Custom theme'],
+        },
+      ],
+      cta: {
+        title: 'Your project next?',
+        text: 'Let’s talk about what you want to build.',
+        action: '$ start-conversation',
+      },
+    },
+    experience: {
+      label: '02 / experience',
+      title: 'Where I’ve made impact',
+      subtitle: 'Teams and clients I’ve worked in and for.',
+      items: [
+        {
+          period: '2024 → now',
           company: 'ECT Rotterdam',
-          role: 'Freelance Software Engineer',
-          description: 'Building HPDX, a cloud messaging platform that processes millions of messages for sea terminals and shipping agencies worldwide. Tech: Azure, C#, .NET, Orleans, Azure Service Bus, Cosmos DB, Container Apps, Bicep, React.',
+          role: 'freelance software engineer',
+          description:
+            'Building HPDX, a cloud messaging platform that processes millions of messages for sea terminals and shipping agencies worldwide. Azure, .NET, Orleans, Service Bus, Cosmos DB, Container Apps, Bicep, React.',
         },
         {
-          period: '2022 — Present',
+          period: '2022 → now',
           company: 'SYMSON',
-          role: 'Lead Developer & Competitor Data Expert',
-          description: 'Responsible for software architecture, building a scalable cloud solution with .NET and Azure. Served as Scrum Master, leading the team through their Scrum adoption. Also handling competitor data sourcing and customer integrations.',
+          role: 'lead developer',
+          description:
+            'Software architecture for a scalable .NET and Azure cloud solution. Scrum Master during the team’s Scrum adoption. Competitor data sourcing and customer integrations.',
         },
         {
-          period: '2020 — Present',
-          company: 'Metriks',
-          role: 'Founder',
-          description: 'Founded a paid Shopify SaaS plugin offering automatic profit calculation, ad analysis, and product performance analytics. Connects with Google, Facebook, TikTok, and Pinterest advertising platforms.',
+          period: '2019 → 2023',
+          company: '4DotNet',
+          role: 'medior → senior .net developer',
+          description:
+            'Consultancy at ANWB Reizen (ElasticSearch, Azure Functions, Cosmos DB, React), Agrifirm (microservices, Kubernetes, Angular), Level Software (Azure multi-tenancy, pipelines) and SLS Logistics (cloud migration, Azure AD B2C, Bicep).',
         },
         {
-          period: '2019 — Present',
-          company: 'ViSoft Solutions',
-          role: 'Freelance .NET Developer & Owner',
-          description: 'Freelance software development for SMEs, building websites and SaaS applications. Previously ran multiple e-commerce webshops with Facebook advertising (avg. ROAS ±4.5) and managed a small team.',
-        },
-        {
-          period: '2019 — 2023',
-          company: '4DotNet (Consultancy)',
-          role: 'Senior .NET Developer',
-          description: 'Consultancy roles at ANWB Reizen (ElasticSearch, Azure Functions, Cosmos DB, React), Agrifirm (Microservices, Kubernetes, Angular), Level Software (Azure multi-tenancy, pipelines), and SLS Logistics (cloud migration, Azure AD B2C, Bicep).',
-        },
-        {
-          period: '2015 — 2019',
+          period: '2015 → 2019',
           company: 'Divide / Stockbase',
-          role: 'ASP.NET Developer',
-          description: 'Built an omnichannel e-commerce platform for retail organizations at Divide. At Stockbase, built the supplier-retailer portal from scratch in ASP.NET — serving 247 retailers, 118 suppliers, and 700M+ pieces of stock.',
+          role: 'asp.net developer',
+          description:
+            'An omnichannel e-commerce platform for retail organizations at Divide. At Stockbase, the supplier-retailer portal from scratch: 247 retailers, 118 suppliers, 700M+ pieces of stock.',
         },
       ],
-      educationTitle: 'Education',
       education: [
-        {
-          period: '2025 — 2027',
-          institution: 'Capabel Onderwijs',
-          degree: 'Social Work (in progress)',
-        },
-        {
-          period: '2019 — 2021',
-          institution: 'University of Amsterdam',
-          degree: 'Business Administration: Digital Business (MSc)',
-        },
-        {
-          period: '2015 — 2019',
-          institution: 'The Hague University of Applied Sciences',
-          degree: 'ICT — Software Engineering (BSc)',
-        },
+        { period: '2019 — 2021', degree: 'MSc Digital Business', institution: 'University of Amsterdam' },
+        { period: '2015 — 2019', degree: 'BSc Software Engineering', institution: 'The Hague University of Applied Sciences' },
+        { period: '2025 — 2027', degree: 'Social Work (in progress)', institution: 'Capabel Onderwijs' },
+        { period: 'certificate · microsoft', degree: 'AZ-204', institution: 'Developing Solutions for Microsoft Azure' },
       ],
-      certificatesTitle: 'Certificates',
-      certificates: [
+    },
+    ventures: {
+      label: '03 / ventures',
+      title: 'Businesses I’ve built and run',
+      intro: 'Seven years of running my own companies: I know what it takes to ship, sell and support a product.',
+      items: [
         {
-          name: 'AZ-204: Developing Solutions for Microsoft Azure',
-          issuer: 'Microsoft',
+          name: 'ViSoft Solutions',
+          logo: 'visoft',
+          period: '2019 → now',
+          role: 'owner',
+          description: 'My freelance company: software development for SMEs, building websites and SaaS applications.',
+          stats: [
+            { value: '7+', label: 'years' },
+            { value: 'SMEs', label: 'clients' },
+          ],
+        },
+        {
+          name: 'Metriks',
+          logo: 'metriks',
+          period: '2020 → now',
+          role: 'founder',
+          description:
+            'A paid Shopify app for profit calculation, ad analysis and product performance. Connects with Google, Facebook, TikTok and Pinterest.',
+          url: 'https://metriks.nl',
+          stats: [
+            { value: '€10M+', label: 'revenue tracked' },
+            { value: '4', label: 'ad platforms' },
+          ],
+        },
+        {
+          name: 'Xuivi',
+          logo: 'xuivi',
+          period: '2022 → now',
+          role: 'founder',
+          description:
+            'Xuivi turns any website into clean JSON: product pages, listings, paginated search and pages behind a login, with proxies, bot walls and retries handled. Also the engine behind CompetitorScraping, for businesses that need competitor data.',
+          url: 'https://xuivi.com',
+          stats: [
+            { value: '18M+', label: 'pages scraped' },
+            { value: '15K+', label: 'scrape jobs' },
+          ],
+        },
+        {
+          name: 'E-commerce webshops',
+          logo: 'shop',
+          period: 'previously',
+          role: 'owner',
+          description:
+            'Ran several webshops on Facebook advertising and managed a small team, which is where the hands-on e-commerce know-how comes from.',
+          stats: [
+            { value: '10K+', label: 'products sold' },
+            { value: '±4.5', label: 'avg. ROAS' },
+          ],
         },
       ],
     },
+    about: {
+      label: '04 / about',
+      title: 'Between tech and business',
+      p1: 'Over ten years of .NET and a Master’s in Digital Business from the University of Amsterdam. I architect new systems, optimize existing ones and lead teams, with a business-minded view on every decision.',
+      p2: 'I use AI daily, from LLMs by OpenAI, Anthropic, Gemini and Grok to features on Azure AI Services, and help businesses adopt it where it adds measurable value.',
+    },
     contact: {
-      title: 'Get in touch',
+      label: '05 / contact',
+      title: 'Let’s build something that scales.',
       subtitle: 'Interested in working together? Feel free to reach out.',
-      email: 'thomas@visoftsolutions.nl',
+      email: 'email',
+      linkedin: 'linkedin',
     },
   },
   nl: {
     nav: {
-      about: 'Over mij',
-      projects: 'Projecten',
-      experience: 'Ervaring',
-      contact: 'Contact',
-    },
-    hero: {
-      greeting: 'Hallo, ik ben',
-      name: 'Thomas Vieveen',
-      tagline: 'Software Engineer & Digital Consultant',
+      work: '~/werk',
+      experience: '~/ervaring',
+      ventures: '~/ondernemingen',
+      about: '~/over',
+      contact: '~/contact',
       cta: 'Neem contact op',
     },
-    about: {
-      title: 'Over mij',
-      p1: 'Ik ben een software engineer met een sterke achtergrond in zowel technologie als business. Met meer dan 10 jaar ervaring in .NET-ontwikkeling en een Master in Digital Business van de Universiteit van Amsterdam, overbrug ik de kloof tussen technische oplossingen en bedrijfsstrategie.',
-      p2: 'Ik specialiseer mij in het bouwen van webapplicaties, cloud-native oplossingen en e-commerce platformen. Of het nu gaat om het ontwerpen van een nieuw systeem, het optimaliseren van bestaande processen of het leiden van een development team — ik breng zowel technische diepgang als een zakelijk perspectief.',
-      ai: 'Ik maak dagelijks gebruik van AI en weet hoe ik het integreer in echte applicaties — van LLMs (OpenAI, Anthropic, Gemini, Grok) en AI-ondersteunde ontwikkeltools tot het bouwen van intelligente features met Azure AI Services. Ik help bedrijven AI pragmatisch in te zetten en hype om te zetten in meetbare waarde.',
-      skillsLabel: 'Technologieën waar ik mee werk',
-    },
-    projects: {
-      title: 'Projecten',
-      categories: [
-        {
-          name: 'Eigen Projecten',
-          items: [
-            {
-              name: 'Metriks',
-              description: 'Een betaalde Shopify SaaS-plugin voor automatische winstberekening, advertentie-analyse en productanalytics. Koppelt met Google, Facebook, TikTok en Pinterest.',
-              url: 'https://metriks.nl',
-              tech: ['Shopify', '.NET', 'Azure', 'React'],
-            },
-            {
-              name: 'CompetitorScraping',
-              description: 'Een platform dat bedrijven die concurrentiedata nodig hebben verbindt met een netwerk van scraping-diensten voor een compleet aanbod aan web scraping.',
-              url: 'https://competitorscraping.com',
-              tech: ['.NET', 'Azure', 'Web Scraping'],
-            },
-          ],
-        },
-        {
-          name: 'Klantprojecten',
-          items: [
-            {
-              name: 'HartNetwerk',
-              description: 'Een facturatietool voor een zorgorganisatie met 100+ medewerkers bij 10+ bedrijven. Geautomatiseerde complexe uurtariefberekeningen (7 tarieven afhankelijk van dag en tijdstip) tot een export met één klik.',
-              tech: ['.NET', 'Azure', 'Blazor'],
-            },
-          ],
-        },
-        {
-          name: 'WordPress',
-          items: [
-            {
-              name: 'Elazorg',
-              description: 'Website voor een zorgorganisatie die kleinschalig wonen en dagbesteding biedt voor mensen met een beperking.',
-              url: 'https://elazorg.nl',
-              tech: ['WordPress', 'Custom Theme'],
-            },
-            {
-              name: 'Close2U',
-              description: 'Website voor een zangtrio, met hun repertoire, muziekvoorbeelden en boekingsinformatie voor evenementen en optredens.',
-              url: 'https://close2u.eu',
-              tech: ['WordPress', 'Custom Theme'],
-            },
-          ],
-        },
+    hero: {
+      role: 'Software engineer & digital consultant',
+      intro:
+        'Ik ontwerp en bouw cloudplatformen op .NET en Azure, van pipelines die miljoenen berichten verwerken tot winstgevende SaaS, met een bedrijfskundige achtergrond achter elke keuze.',
+      cta: 'Neem contact op',
+      secondary: 'Bekijk projecten',
+      currentlyLabel: 'Nu',
+      currentlyTitle: 'Bouwen aan HPDX bij ECT Rotterdam',
+      currentlyText:
+        'Een cloud messaging platform dat miljoenen berichten verwerkt voor zeeterminals en scheepvaartagenten wereldwijd.',
+      facts: [
+        { label: 'projecten', value: 'Beschikbaar', status: 'on' },
+        { label: 'freelance inhuur', value: 'Niet beschikbaar', status: 'off' },
+        { label: 'kernstack', value: '.NET · Azure · React' },
+        { label: 'gevestigd in', value: 'Nederland' },
       ],
     },
-    experience: {
-      title: 'Ervaring',
+    stats: [
+      { value: '18M+', label: 'pagina’s gescrapet' },
+      { value: '€10M+', label: 'omzet gevolgd' },
+      { value: '406', label: 'webshops op Metriks' },
+      { value: '10+', label: 'jaar .NET & Azure' },
+    ],
+    projects: {
+      label: '01 / werk',
+      title: 'Wat ik heb gebouwd',
+      filters: { all: 'alles', own: 'eigen producten', client: 'klant', wordpress: 'wordpress' },
+      categories: { own: 'eigen product', client: 'klant', wordpress: 'wordpress' },
+      visit: 'Bezoek',
+      showAll: '+ {n} meer · toon alle projecten',
+      showFewer: 'toon minder',
       items: [
         {
-          period: '2024 — Heden',
+          name: 'Metriks',
+          category: 'own',
+          description:
+            'Betaalde Shopify SaaS voor automatische winstberekening, analyse van advertentie-uitgaven en productprestaties. Koppelt met Google, Facebook, TikTok en Pinterest.',
+          url: 'https://metriks.nl',
+          tech: ['Shopify', '.NET', 'Azure', 'React'],
+        },
+        {
+          name: 'Xuivi',
+          category: 'own',
+          description:
+            'Zet elke website om in nette JSON: productpagina’s, overzichten, gepagineerde zoekresultaten en pagina’s achter een login. JavaScript, proxies, botmuren en retries worden afgehandeld. Betalen per geslaagde pagina.',
+          url: 'https://xuivi.com',
+          tech: ['.NET', 'Azure', 'Web scraping', 'API'],
+        },
+        {
+          name: 'HartNetwerk',
+          category: 'client',
+          description:
+            'Facturatietool voor een zorgorganisatie met 100+ medewerkers bij 10+ bedrijven. Zeven uurtarieven afhankelijk van dag en tijdstip, teruggebracht tot een export met één klik.',
+          tech: ['.NET', 'Azure', 'Blazor'],
+        },
+        {
+          name: 'Vieveen A.B.C.',
+          category: 'client',
+          description:
+            'Website voor een administratie- en belastingadvieskantoor in Nootdorp dat particulieren en ondernemers al ruim 30 jaar helpt.',
+          url: 'https://abcvieveen.nl',
+          tech: ['Next.js', 'React'],
+        },
+        {
+          name: 'Elazorg',
+          category: 'wordpress',
+          description:
+            'Website voor een zorgorganisatie die kleinschalig wonen en dagbesteding biedt voor mensen met een beperking.',
+          url: 'https://elazorg.nl',
+          tech: ['WordPress', 'Custom theme'],
+        },
+        {
+          name: 'Close2U',
+          category: 'wordpress',
+          description:
+            'Website voor een zangtrio, met hun repertoire, muziekvoorbeelden en boekingsinformatie voor evenementen.',
+          url: 'https://close2u.eu',
+          tech: ['WordPress', 'Custom theme'],
+        },
+      ],
+      cta: {
+        title: 'Jouw project als volgende?',
+        text: 'Laten we praten over wat je wilt bouwen.',
+        action: '$ start-gesprek',
+      },
+    },
+    experience: {
+      label: '02 / ervaring',
+      title: 'Waar ik impact heb gemaakt',
+      subtitle: 'Teams en klanten waarin en waarvoor ik heb gewerkt.',
+      items: [
+        {
+          period: '2024 → nu',
           company: 'ECT Rotterdam',
-          role: 'Freelance Software Engineer',
-          description: 'Bouwen aan HPDX, een cloud messaging platform dat miljoenen berichten verwerkt voor zeeterminals en scheepvaartagentschappen wereldwijd. Tech: Azure, C#, .NET, Orleans, Azure Service Bus, Cosmos DB, Container Apps, Bicep, React.',
+          role: 'freelance software engineer',
+          description:
+            'Bouwen aan HPDX, een cloud messaging platform dat miljoenen berichten verwerkt voor zeeterminals en scheepvaartagenten wereldwijd. Azure, .NET, Orleans, Service Bus, Cosmos DB, Container Apps, Bicep, React.',
         },
         {
-          period: '2022 — Heden',
+          period: '2022 → nu',
           company: 'SYMSON',
-          role: 'Lead Developer & Competitor Data Expert',
-          description: 'Verantwoordelijk voor de softwarearchitectuur en het bouwen van een schaalbare cloudoplossing met .NET en Azure. Daarnaast actief als Scrum Master bij het invoeren van Scrum binnen het team. Ook verantwoordelijk voor concurrentiedata en klantintegraties.',
+          role: 'lead developer',
+          description:
+            'Softwarearchitectuur voor een schaalbare cloudoplossing met .NET en Azure. Scrum Master tijdens de invoering van Scrum in het team. Concurrentiedata en klantintegraties.',
         },
         {
-          period: '2020 — Heden',
-          company: 'Metriks',
-          role: 'Oprichter',
-          description: 'Een betaalde Shopify SaaS-plugin voor automatische winstberekening, advertentie-analyse en productanalytics. Koppelt met Google, Facebook, TikTok en Pinterest.',
+          period: '2019 → 2023',
+          company: '4DotNet',
+          role: 'medior → senior .net developer',
+          description:
+            'Detachering bij ANWB Reizen (ElasticSearch, Azure Functions, Cosmos DB, React), Agrifirm (microservices, Kubernetes, Angular), Level Software (Azure multi-tenancy, pipelines) en SLS Logistics (cloudmigratie, Azure AD B2C, Bicep).',
         },
         {
-          period: '2019 — Heden',
-          company: 'ViSoft Solutions',
-          role: 'Freelance .NET Developer & Eigenaar',
-          description: 'Freelance softwareontwikkeling voor het MKB, bouwen van websites en SaaS-applicaties. Eerder meerdere e-commerce webshops gerund met Facebook-advertenties (gem. ROAS ±4.5) en een klein team aangestuurd.',
-        },
-        {
-          period: '2019 — 2023',
-          company: '4DotNet (Detachering)',
-          role: 'Senior .NET Developer',
-          description: 'Detacheringsrollen bij ANWB Reizen (ElasticSearch, Azure Functions, Cosmos DB, React), Agrifirm (Microservices, Kubernetes, Angular), Level Software (Azure multi-tenancy, pipelines) en SLS Logistics (cloudmigratie, Azure AD B2C, Bicep).',
-        },
-        {
-          period: '2015 — 2019',
+          period: '2015 → 2019',
           company: 'Divide / Stockbase',
-          role: 'ASP.NET Developer',
-          description: 'Gebouwd aan een omnichannel e-commerce platform voor retailorganisaties bij Divide. Bij Stockbase het leveranciers-retailerportaal from scratch gebouwd in ASP.NET — voor 247 retailers, 118 leveranciers en 700M+ stuks voorraad.',
+          role: 'asp.net developer',
+          description:
+            'Een omnichannel e-commerceplatform voor retailorganisaties bij Divide. Bij Stockbase het leveranciers-retailerportaal vanaf nul: 247 retailers, 118 leveranciers, 700M+ stuks voorraad.',
         },
       ],
-      educationTitle: 'Opleidingen',
       education: [
-        {
-          period: '2025 — 2027',
-          institution: 'Capabel Onderwijs',
-          degree: 'Social Work (in opleiding)',
-        },
-        {
-          period: '2019 — 2021',
-          institution: 'Universiteit van Amsterdam',
-          degree: 'Business Administration: Digital Business (MSc)',
-        },
-        {
-          period: '2015 — 2019',
-          institution: 'De Haagse Hogeschool',
-          degree: 'HBO-ICT — Software Engineering (BSc)',
-        },
+        { period: '2019 — 2021', degree: 'MSc Digital Business', institution: 'Universiteit van Amsterdam' },
+        { period: '2015 — 2019', degree: 'HBO-ICT Software Engineering', institution: 'De Haagse Hogeschool' },
+        { period: '2025 — 2027', degree: 'Social Work (in opleiding)', institution: 'Capabel Onderwijs' },
+        { period: 'certificaat · microsoft', degree: 'AZ-204', institution: 'Developing Solutions for Microsoft Azure' },
       ],
-      certificatesTitle: 'Certificaten',
-      certificates: [
+    },
+    ventures: {
+      label: '03 / ondernemingen',
+      title: 'Bedrijven die ik heb opgezet en run',
+      intro: 'Zeven jaar eigen bedrijven runnen: ik weet wat erbij komt kijken om een product te bouwen, verkopen en ondersteunen.',
+      items: [
         {
-          name: 'AZ-204: Developing Solutions for Microsoft Azure',
-          issuer: 'Microsoft',
+          name: 'ViSoft Solutions',
+          logo: 'visoft',
+          period: '2019 → nu',
+          role: 'eigenaar',
+          description: 'Mijn freelancebedrijf: softwareontwikkeling voor het mkb, van websites tot SaaS-applicaties.',
+          stats: [
+            { value: '7+', label: 'jaar' },
+            { value: 'MKB', label: 'klanten' },
+          ],
+        },
+        {
+          name: 'Metriks',
+          logo: 'metriks',
+          period: '2020 → nu',
+          role: 'oprichter',
+          description:
+            'Een betaalde Shopify-app voor winstberekening, advertentie-analyse en productprestaties. Koppelt met Google, Facebook, TikTok en Pinterest.',
+          url: 'https://metriks.nl',
+          stats: [
+            { value: '€10M+', label: 'omzet gevolgd' },
+            { value: '4', label: 'advertentieplatformen' },
+          ],
+        },
+        {
+          name: 'Xuivi',
+          logo: 'xuivi',
+          period: '2022 → nu',
+          role: 'oprichter',
+          description:
+            'Xuivi zet elke website om in nette JSON: productpagina’s, overzichten, gepagineerde zoekresultaten en pagina’s achter een login, inclusief proxies, botmuren en retries. Ook de motor achter CompetitorScraping, voor bedrijven die concurrentiedata nodig hebben.',
+          url: 'https://xuivi.com',
+          stats: [
+            { value: '18M+', label: 'pagina’s gescrapet' },
+            { value: '15K+', label: 'scrape-jobs' },
+          ],
+        },
+        {
+          name: 'E-commerce webshops',
+          logo: 'shop',
+          period: 'eerder',
+          role: 'eigenaar',
+          description:
+            'Meerdere webshops gerund op Facebook-advertenties en een klein team aangestuurd. Daar komt de praktische e-commercekennis vandaan.',
+          stats: [
+            { value: '10K+', label: 'producten verkocht' },
+            { value: '±4.5', label: 'gem. ROAS' },
+          ],
         },
       ],
     },
+    about: {
+      label: '04 / over',
+      title: 'Tussen techniek en business',
+      p1: 'Ruim tien jaar .NET en een Master in Digital Business aan de Universiteit van Amsterdam. Ik ontwerp nieuwe systemen, verbeter bestaande en leid teams, met een zakelijke blik op elke beslissing.',
+      p2: 'Ik gebruik AI dagelijks, van LLM’s van OpenAI, Anthropic, Gemini en Grok tot features op Azure AI Services, en help bedrijven het in te zetten waar het meetbare waarde oplevert.',
+    },
     contact: {
-      title: 'Neem contact op',
+      label: '05 / contact',
+      title: 'Laten we iets bouwen dat schaalt.',
       subtitle: 'Interesse om samen te werken? Neem gerust contact op.',
-      email: 'thomas@visoftsolutions.nl',
+      email: 'e-mail',
+      linkedin: 'linkedin',
     },
   },
 };
