@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { ArrowRight, ArrowUpRight } from 'lucide-react';
-import { useAppContext } from '../context/AppContext';
+import { useAppContext } from '../context/useAppContext';
 import translations, { type ProjectCategory } from '../i18n';
 import FadeIn from './FadeIn';
 import MosaicStrip from './MosaicStrip';

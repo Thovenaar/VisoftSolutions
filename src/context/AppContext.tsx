@@ -1,14 +1,6 @@
-import { createContext, useContext, useState, useEffect, type ReactNode } from 'react';
+import { useState, useEffect, type ReactNode } from 'react';
 import type { Language } from '../i18n';
-
-interface AppContextType {
-  theme: 'light' | 'dark';
-  toggleTheme: () => void;
-  language: Language;
-  toggleLanguage: () => void;
-}
-
-const AppContext = createContext<AppContextType | undefined>(undefined);
+import { AppContext } from './useAppContext';
 
 function getInitialTheme(): 'light' | 'dark' {
   const stored = localStorage.getItem('theme');
@@ -44,10 +36,4 @@ export function AppProvider({ children }: { children: ReactNode }) {
       {children}
     </AppContext.Provider>
   );
-}
-
-export function useAppContext() {
-  const ctx = useContext(AppContext);
-  if (!ctx) throw new Error('useAppContext must be used within AppProvider');
-  return ctx;
 }

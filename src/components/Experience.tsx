@@ -1,4 +1,4 @@
-import { useAppContext } from '../context/AppContext';
+import { useAppContext } from '../context/useAppContext';
 import translations from '../i18n';
 import FadeIn from './FadeIn';
 import SectionHeader from './SectionHeader';

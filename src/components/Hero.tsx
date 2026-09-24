@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { useAppContext } from '../context/AppContext';
+import { useAppContext } from '../context/useAppContext';
 import translations from '../i18n';
 
 const ease = [0.21, 0.47, 0.32, 0.98] as const;

@@ -1,5 +1,5 @@
 import { ArrowUpRight, ShoppingBag } from 'lucide-react';
-import { useAppContext } from '../context/AppContext';
+import { useAppContext } from '../context/useAppContext';
 import translations, { type VentureLogo } from '../i18n';
 import FadeIn from './FadeIn';
 import SectionHeader from './SectionHeader';

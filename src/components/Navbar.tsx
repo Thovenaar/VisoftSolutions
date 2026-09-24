@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Menu, X, Sun, Moon } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { useAppContext } from '../context/AppContext';
+import { useAppContext } from '../context/useAppContext';
 import translations from '../i18n';
 import MosaicStrip from './MosaicStrip';
 
